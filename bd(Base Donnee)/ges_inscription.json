@@ -1,0 +1,124 @@
+{
+    "demandes": [
+        {
+            "id": 4,
+            "type": "validation",
+            "date": "12\/01\/2023",
+            "motif": "Lorem ipsum,dolor sit amet",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Encours"
+        },
+        {
+            "id": 2,
+            "type": "Suspension",
+            "date": "12\/01\/2023",
+            "motif": "Lorem ipsum,dolor sit amet",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Accepte"
+        },
+        {
+            "id": 3,
+            "type": "Annulation",
+            "date": "12\/01\/2022",
+            "motif": "Lorem ipsum,dolor sit amet",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Rejeter"
+        },
+        {
+            "id": 4,
+            "type": "Suspension",
+            "date": "12\/01\/2023",
+            "motif": "Sa marche",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Encours"
+        },
+        {
+            "id": 4,
+            "type": "Annulation",
+            "date": "12\/01\/2023",
+            "motif": "J'ai faim",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Encours"
+        },
+        {
+            "id": "f2af",
+            "type": "Suspension",
+            "date": "15-12-2023",
+            "motif": "dioudj",
+            "etudiant_id": 1,
+            "annee_id": 1,
+            "etat": "Encours"
+        }
+    ],
+    "classes": [
+        {
+            "id": 1,
+            "filiere": "GLRS",
+            "niveau": "L2",
+            "nom": "L2 GLRS A"
+        },
+        {
+            "id": 2,
+            "filiere": "CDSD",
+            "niveau": "L2",
+            "nom": "L2 CDSD"
+        },
+        {
+            "id": 3,
+            "filiere": "MAIE",
+            "niveau": "L2",
+            "nom": "L2 MAIE"
+        }
+    ],
+    "annees": [
+        {
+            "id": 1,
+            "nom": "2023-2024",
+            "etat": 1
+        },
+        {
+            "id": 2,
+            "nom": "2022-2023",
+            "etat": 0
+        },
+        {
+            "id": 3,
+            "nom": "2021-2022 ",
+            "etat": 0
+        }
+    ],
+    "etudiants": [
+        {
+            "id": 1,
+            "matricule": "MA001",
+            "nom": "Yaya",
+            "prenom": "Sow",
+            "login": "etudiant@gmail.com",
+            "password": "passer123",
+            "classe_id": 1
+        },
+        {
+            "id": 2,
+            "matricule": "MA001",
+            "nom": "Wan",
+            "prenom": "Baila",
+            "login": "etudiant@gmail.com",
+            "password": "passer123",
+            "classe_id": 2
+        },
+        {
+            "id": 3,
+            "matricule": "MA001",
+            "nom": "Niang",
+            "prenom": "Aly",
+            "login": "etudiant@gmail.com",
+            "password": "passer123",
+            "classe_id": 3
+        }
+    ]
+}

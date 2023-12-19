@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+:root{
+    --couleur1: #0c08ef;
+    --couleur2: rgba(21, 5, 244, 0.5);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #e8e8e8;
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.connexion{
+    color: var(--couleur1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    border-radius: 15px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.5);
+    width: 300px;
+    /* display: grid; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    filter: drop-shadow(0px 0px 10px rgba(21, 5, 244, 0.5));
+}
+
+h2{
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+}
+
+label, span, .forget, .create{
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 0px 10px 0px;
+}
+
+input{
+    color: #fff;
+    background-color: var(--couleur2);
+    padding: 10px;
+    border: none;
+    height: 20px;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+}
+input::placeholder{
+    color: white;
+    font-size: 12px;
+}
+
+.check{
+    display: flex;
+    justify-content: space-between;
+}
+.che{
+    font-size: 10px;
+}
+.remen input[type="checkbox"]{
+    /* margin-top: 5px; */
+    vertical-align: middle;
+}
+.remen{
+    margin-top: 5px;
+}
+
+/* .remen span{
+    vertical-align: middle;
+} */
+.remen>input{
+    margin-right: 2px;
+    width: 10px;
+    cursor: pointer;
+}
+.forget>a{
+    color: var(--couleur2);
+}
+.login{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+.login>button{
+    cursor: pointer;
+    color: #fff;
+    width: 50%;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: var(--couleur2);
+    border: none;
+    border-radius: 15px;
+}
+.create{
+    text-align: center;
+    margin-top: 5px;
+}
+.create>a{
+    color: #000000;
+}

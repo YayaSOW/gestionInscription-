@@ -92,7 +92,7 @@
             "etat": 0
         }
     ],
-    "etudiants": [
+    "users": [
         {
             "id": 1,
             "matricule": "MA001",
@@ -100,6 +100,7 @@
             "prenom": "Sow",
             "login": "etudiant@gmail.com",
             "password": "passer123",
+            "role": "ROLE_ETUDIANT",
             "classe_id": 1
         },
         {
@@ -109,6 +110,17 @@
             "prenom": "Baila",
             "login": "etudiant@gmail.com",
             "password": "passer123",
+            "role": "ROLE_ETUDIANT",
+            "classe_id": 2
+        },
+        {
+            "id": 5,
+            "matricule": "MA001",
+            "nom": "Wan",
+            "prenom": "Baila",
+            "login": "etudiant@gmail.com",
+            "password": "passer123",
+            "role": "ROLE_AC",
             "classe_id": 2
         },
         {
@@ -118,6 +130,7 @@
             "prenom": "Aly",
             "login": "etudiant@gmail.com",
             "password": "passer123",
+            "role": "ROLE_ETUDIANT",
             "classe_id": 3
         }
     ]

@@ -8,7 +8,15 @@
     }
 
     function getALLEtudiants() : array {
-        return fromJsonToArray("etudiants");
+        $users = fromJsonToArray("users");
+        $etudiants=[];
+        foreach($users as $user){
+            if ($user["role"]=="ROLE_ETUDIANT") {
+                $etudiants[] = $user;
+            }
+        }
+        return $etudiants;
+
     }
 
     function getAllDemandes() : array {

@@ -4,13 +4,13 @@
             <div class="emai">
                 <label for="emai">Email Or Username</label>
                 <div>
-                    <input type="email" class="enter" placeholder="Enter Email">
+                    <input name="email" type="email" class="enter" placeholder="Enter Email">
                 </div>
             </div>
             <div class="password">
                 <label for="password">Password</label>
                 <div>
-                    <input type="password" class="enter" placeholder="Enter Password">
+                    <input name="password" type="password" class="enter" placeholder="Enter Password">
                 </div>
             </div>
             <div class="check">

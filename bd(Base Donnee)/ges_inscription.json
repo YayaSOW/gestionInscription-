@@ -60,35 +60,35 @@
             "id": 1,
             "filiere": "GLRS",
             "niveau": "L2",
-            "nom": "L2 GLRS A"
+            "libelle": "L2 GLRS A"
         },
         {
             "id": 2,
             "filiere": "CDSD",
             "niveau": "L2",
-            "nom": "L2 CDSD"
+            "libelle": "L2 CDSD"
         },
         {
             "id": 3,
             "filiere": "MAIE",
             "niveau": "L2",
-            "nom": "L2 MAIE"
+            "libelle": "L2 MAIE"
         }
     ],
     "annees": [
         {
             "id": 1,
-            "nom": "2023-2024",
+            "libelle": "2023-2024",
             "etat": 1
         },
         {
             "id": 2,
-            "nom": "2022-2023",
+            "libelle": "2022-2023",
             "etat": 0
         },
         {
             "id": 3,
-            "nom": "2021-2022 ",
+            "libelle": "2021-2022 ",
             "etat": 0
         }
     ],
@@ -98,8 +98,8 @@
             "matricule": "MA001",
             "nom": "Yaya",
             "prenom": "Sow",
-            "login": "etudiant@gmail.com",
-            "password": "passer123",
+            "login": "e@gmail.com",
+            "password": "p",
             "role": "ROLE_ETUDIANT",
             "classe_id": 1
         },
@@ -115,13 +115,13 @@
         },
         {
             "id": 5,
-            "matricule": "MA001",
             "nom": "Wan",
             "prenom": "Baila",
-            "login": "etudiant@gmail.com",
-            "password": "passer123",
+            "login": "a@gmail.com",
+            "password": "a",
             "role": "ROLE_AC",
-            "classe_id": 2
+            "matricule": "",
+            "classe_id": 0
         },
         {
             "id": 3,

@@ -4,10 +4,11 @@
             <form action="<?=WEBROOT?>" method="post" class="click1">
                 <span class="etat">Etat</span>
                 <select name="etat" id="">
-                    <option value="All"><?=$etat?></option>
-                    <option value="Accepte">Acceptée</option>
-                    <option value="Encours">En Cours</option>
-                    <option value="Rejeter">Rejeter</option>
+                    <!-- <option value="All">//=$etat?></option> -->
+                    <option value="All" <?php echo ($etat == 'All') ? 'selected' : ''; ?>>All</option>
+                    <option value="Accepte" <?php echo ($etat == 'Accepte') ? 'selected' : ''; ?>>Acceptée</option>
+                    <option value="Encours" <?php echo ($etat == 'Encours') ? 'selected' : ''; ?>>En Cours</option>
+                    <option value="Rejeter" <?php echo ($etat == 'Rejeter') ? 'selected' : ''; ?>>Rejeter</option>
                 </select>
                 <button type="submit" name="action" value="form-filtre-demande">Ok</button>
             </form>
@@ -25,11 +26,12 @@
                                 <td><?=$value["date"]?></td>
                                 <td><?=$value["type"]?></td>
                                 <td><?=$value["etat"]?></td>
-                                <td><a href="wire 3 Etudiant.html">Détails?</a></td>
+                                <td><a href="<?=WEBROOT?>/?action=detail-demande&demande_id=<?=$value["id"]?>">Détails?</a></td>
                             </tr>
+                            <!-- $demande >dans index au detail-demande -->
                         <?php endforeach ?>
                     </table>
-                </div>
+                </div> 
                 <div class="page">
                 <a href="wire 1 Etudiant.html" class="li">
                     <span>&laquo; Precedent &raquo;</span>

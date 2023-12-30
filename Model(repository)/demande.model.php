@@ -7,27 +7,82 @@
         return fromJsonToArray("annees");
     }
 
-    function getALLEtudiants() : array {
-        $users = fromJsonToArray("users");
+    function getAllData(string $key) : array {
+        return fromJsonToArray($key);
+    }
+    function getAllUsers() : array {
+        return getAllData("users");
+    }
+
+    function getAllUsersByRole(string $role) : array {
+        $users = getAllUsers();
         $etudiants=[];
         foreach($users as $user){
-            if ($user["role"]=="ROLE_ETUDIANT") {
+            if ($user["role"]==$role) {
                 $etudiants[] = $user;
             }
         }
-        return $etudiants;
-
+        return $etudiants;     
     }
 
-    function getAllDemandes() : array {
-        return fromJsonToArray("demandes");
+    function getDataById(array $data,int $id) : array|null {
+        foreach($data as $value){
+            if ($value["id"]==$id) {
+                return $value;
+            }
+        }
+        return null;
     }
+
+    function getClassById(int $id) : array|null {
+        $classes = getAllClasses();
+        return getDataById($classes,$id);
+        
+    }
+
+    function getAllEtudiants() : array {
+        $etudiants = getAllUsersByRole("ROLE_ETUDIANT");
+        $etudiantClasse=[];
+        foreach($etudiants as $etudiant){
+            $classe = getClassById($etudiant["classe_id"]);
+            $etudiantClasse[] = array_merge($classe,$etudiant);
+        }
+        return $etudiantClasse;
+    }
+    function getEtudiantById(int $id) : array|null {
+        $etudiants = getAllEtudiants();
+        return getDataById($etudiants,$id);
+    }
+    function getAllDemandes(int|null $anneeId=null,string $etat="All") : array {
+        $demandes = getAllData("demandes");
+        if ($anneeId==null)return $demandes; 
+            $demandeEtu = [];
+            foreach ($demandes as $demande) {
+                $etudiant = getEtudiantById($demande["etudiant_id"]);
+                if ($demande["annee_id"]==$anneeId) {
+                    if ($etat=='All') {
+                        $demandeEtu[] = array_merge($etudiant ,$demande) ;
+                    }else{
+                        if ($demande["etat"]==$etat) {
+                            $demandeEtu[] = array_merge($etudiant ,$demande) ;
+                        }
+                    }
+                }
+            }
+        return $demandeEtu;
+    }
+
+    function getDemandeById($anneeId,$id){
+        $demandes = getAllDemandes($anneeId);
+        return getDataById($demandes,$id);
+    }
+
 
     function connexion(string $login,string $password) : array|null {
-        $etudiants=getALLEtudiants();
-        foreach ($etudiants as $value){
-            if ($value["login"]==$login && $value["password"]==$password) {
-                return $value;
+        $users=getAllUsers();
+        foreach ($users as $user){
+            if ($user["login"]==$login && $user["password"]==$password) {
+                return $user;
             };
         }
         return null;
@@ -44,15 +99,15 @@
     };
 
     function getDemandeByEtudiantAndAnneeEncours(int $etudianId,int $anneeId, $etat="All") : array|null {
-        $demandes=getAllDemandes();
+        $demandes=getAllDemandes($anneeId);
         $demandeEtu=[];
         foreach ($demandes as $value){
             if ($etat=="All") {
-                if ($value["etudiant_id"]==$etudianId && $value["annee_id"]==$anneeId) {
+                if ($value["etudiant_id"]==$etudianId) {
                     $demandeEtu[]=$value;
                 }
             }else{
-                if ($value["etudiant_id"]==$etudianId && $value["annee_id"]==$anneeId && $value["etat"]==$etat) { 
+                if ($value["etudiant_id"]==$etudianId && $value["etat"]==$etat) { 
                     $demandeEtu[]=$value;
                 }
             } 

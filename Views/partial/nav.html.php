@@ -16,7 +16,7 @@
             <legend align="center"><?=$_SESSION["anneeEncours"]["libelle"]?></legend>
         <?php endif?>
             <div class="demande">
-                <!-- Demande des etudiants -->
+                <!-- Autorisation des etudiants -->
                 <?php if($_SESSION['userConnect']["role"] == "ROLE_ETUDIANT"): ?>
                 <div class="de">
                     <img src="<?=WEBROOT?>/img/demande.jpg" alt="" class="logo1">
@@ -26,7 +26,7 @@
                 </div>
                 <?php endif?>
 
-                <!-- Demande de AC -->
+                <!-- Autorisation de AC -->
                 <?php if($_SESSION['userConnect']["role"] == "ROLE_AC"): ?>
                 <div class="de">
                     <img src="<?=WEBROOT?>/img/demande.jpg" alt="" class="logo1">
@@ -35,17 +35,40 @@
                     </a>
                 </div> 
                 <?php endif?>
+                <?php if(($_SESSION['userConnect']["role"] == "ROLE_AC") or ($_SESSION['userConnect']["role"] == "ROLE_ETUDIANT")): ?>
                 <div class="de">
                     <img src="<?=WEBROOT?>/img/a.jpg" alt="" class="logo1">
                     <a href="<?=WEBROOT?>?action=add" class="dee">
                         <span >Nouveau</span>
                     </a>
                 </div>
+                <?php endif?>
+                <!-- Autorisation de RP -->
+                <?php if($_SESSION['userConnect']["role"] == "ROLE_RP"): ?>
+                <div class="de">
+                    <img src="../img/cl.jpg" alt="" class="logo1">
+                    <a href="<?=WEBROOT?>?action=listeclass" class="dee">
+                        <span>Lister Les Classes</span>
+                    </a>
+                </div>
+                <div class="de">
+                    <img src="../img/pr.jpg" alt="" class="logo1">
+                    <a href="<?=WEBROOT?>?action=listeprof" class="dee">
+                        <span >Lister Les Professeur</span>
+                    </a>
+                </div>
+                <div class="de">
+                    <img src="../img/demande.jpg" alt="" class="logo1">
+                    <a href="<?=WEBROOT?>?action=traitedemande" class="dee">
+                        <span >Traiter Les Démandes</span>
+                    </a>
+                </div>
+                <?php endif?>
                 <div class="de">
                     <img src="<?=WEBROOT?>/img/deco.jpg" alt="" class="logo1">
                     <a href="<?=WEBROOT?>?action=logout" class="dee">
                         <span >Deconnexion</span>
-                    </a>
+                    </a>    
                 </div>
             </div>
     </nav>

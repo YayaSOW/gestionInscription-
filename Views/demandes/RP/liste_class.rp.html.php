@@ -16,25 +16,17 @@
                             <th>Filiere</th>
                             <th>Niveau</th>
                         </tr>
+                        <?php foreach ($classes as $classe) : ?>
                         <tr>
-                            <td>L2-GLRS</td>
-                            <td>GLRS</td>
-                            <td>L2</td>
+                            <td><?=$classe["libelle"]?></td>
+                            <td><?=$classe["filiere"]?></td>
+                            <td><?=$classe["niveau"]?></td>                        
                         </tr>
-                        <tr>
-                            <td>L2-CDSD</td>
-                            <td>CDSD</td>
-                            <td>L2</td>
-                        </tr>
-                        <tr>
-                            <td>L2-ETSE</td>
-                            <td>ETSE</td>
-                            <td>L2</td>
-                        </tr>
+                        <?php endforeach; ?>
                     </table>
                 </div>
                 <div class="Creer">
-                    <a href="wire 2 RP.html"><button type="submit">Creer Une Classe</button></a>
+                    <a href="<?=WEBROOT?>?action=creerclass"><button type="submit">Creer Une Classe</button></a>
                 </div>
             </div>
             <div class="page">

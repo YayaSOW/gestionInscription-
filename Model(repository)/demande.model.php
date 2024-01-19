@@ -118,4 +118,19 @@
     function addDemande(array $demande) : void {
         fromArrayToJson("demandes",$demande);
     }
+
+    function newId(array $tab) : int {
+        $newId=count($tab)+1;
+        return $newId;
+    }
+    // function ajoutClass(array $newclass ) {
+    //     $allData=fromJsonToArray();
+    //     $class=getAllClasses();
+    //     $class[] = $newclass;
+    //     $allData["classes"] = $class;
+    //     fromArrayToJson($allData);
+    // }
+    function ajoutClass(array $demande) : void {
+        fromArrayToJson("classes",$demande);
+    }
 ?>

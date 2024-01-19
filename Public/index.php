@@ -1,9 +1,9 @@
 <?php
-    define("WEBROOT","http://localhost:8000/");
+    session_start(); 
+    define("WEBROOT","http://localhost:7000/");
     define("DB","../bd(Base Donnee)/ges_inscription.json");
     require_once("../bd(Base Donnee)/convert.php");
     require_once("../Model(repository)/demande.model.php");
-    session_start(); 
     $etat = 'All';
     ?>
 
@@ -20,7 +20,31 @@
     <?php
     if (isset($_REQUEST["action"])) {
         require_once("../Views/partial/nav.html.php");
-        if ($_REQUEST["action"]=="add") {
+        if($_REQUEST["action"]=="form-login"){
+            $login=$_POST['email'];
+            $password=$_POST['password'];
+            $userConnect=connexion($login,$password);
+            // var_dump($userConnect);
+            if ($userConnect==null) {
+                header("location:".WEBROOT);
+            }else{
+                $_SESSION["userConnect"]=$userConnect;
+                $_SESSION["anneeEncours"]=getAnneeEncours();
+                if ($_SESSION["userConnect"]["role"]=="ROLE_ETUDIANT") {
+                    $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+                    // header("location:".WEBROOT."?action=liste");
+                    require_once("../Views/demandes/liste.html.php");
+                    }elseif ($_SESSION["userConnect"]["role"]=="ROLE_AC") {
+                        // header("location:".WEBROOT."?action=liste-ac");
+                        $demandes=getAllDemandes($_SESSION["anneeEncours"]["id"]);
+                        require_once("../Views/demandes/liste.ac.html.php");
+                    }else{
+                        $classes=getAllClasses();
+                        require_once("../Views/demandes/RP/liste_class.rp.html.php");
+                    }
+            }
+        }      
+        elseif ($_REQUEST["action"]=="add") {
             require_once("../Views/demandes/add.html.php");
         }elseif ($_REQUEST["action"]=="liste-ac") {
             $demandes=getAllDemandes($_SESSION["anneeEncours"]["id"]);
@@ -34,6 +58,51 @@
         elseif ($_REQUEST["action"]=="liste") {
             $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
             require_once("../Views/demandes/liste.html.php");
+        }
+        elseif ($_REQUEST["action"]=="listeclass") {
+            $classes=getAllClasses();
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/liste_class.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="listeprof") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/liste_prof.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="traitedemande") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/traiter_demande.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="creerclass") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/creer_class.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="valide_ajout_class") {
+            $newClass=[
+                "id"=>newId(getAllClasses()),
+                "filiere"=> $_REQUEST["filiere"],
+                "niveau"=> $_REQUEST["niveau"],
+                "libelle"=> $_REQUEST["libelle"]
+            ];
+            ajoutClass($newClass);
+            $classes=getAllClasses();
+            // header("location:".WEBROOT."?action=listeclass");
+            require_once("../Views/demandes/RP/creer_class.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="ajoutprof") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/ajout_prof.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="affecterclass") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/affecter_class.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="affectermodule") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/affecter_module.rp.html.php");
+        }
+        elseif ($_REQUEST["action"]=="listemodule") {
+            // $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
+            require_once("../Views/demandes/RP/liste_module.rp.html.php");
         }
         elseif ($_REQUEST["action"]=="logout") {
             unset($_SESSION["userConnect"]);
@@ -71,28 +140,9 @@
             $demandes=getDemandeByEtudiantAndAnneeEncours(1,$anneeEncours["id"]);
             // require_once("../Views/demandes/liste.html.php");
             header("location:".WEBROOT."?action=liste");
-        }elseif ($_REQUEST["action"]=="form-login") {
-            $login=$_POST['email'];
-            $password=$_POST['password'];
-            $_SESSION["userConnect"]=connexion($login,$password);
-            $_SESSION["anneeEncours"]=getAnneeEncours(); 
-            if ($_SESSION["userConnect"]==null) {
-                // header("location:".WEBROOT);
-                require_once("../Views/security/login.html.php");
-            }else{
-                // $_SESSION["userConnect"]=$etudiantConnect;
-                if ($_SESSION["userConnect"]["role"]=="ROLE_ETUDIANT") {
-                    $demandes=getDemandeByEtudiantAndAnneeEncours($_SESSION["userConnect"]["id"],$_SESSION["anneeEncours"]["id"]);
-                    // header("location:".WEBROOT."?action=liste");
-                    require_once("../Views/demandes/liste.html.php");
-                    }elseif ($_SESSION["userConnect"]["role"]=="ROLE_AC") {
-                        // header("location:".WEBROOT."?action=liste-ac");
-                        $demandes=getAllDemandes($_SESSION["anneeEncours"]["id"]);
-                        require_once("../Views/demandes/liste.ac.html.php");
-                    }            
-                }
         }
-    }
+        }
+    // }
     //
     else{ 
         // $demandes=getDemandeByEtudiantAndAnneeEncours(1,$anneeEncours["id"]);

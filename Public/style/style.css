@@ -207,6 +207,10 @@ td>a{
     justify-content: center;
 }
 
+.etat1{
+    padding: 20px 20px 20px 0;
+    margin: 15px 0px 5px 0px;
+}
 .click01{
     display: flex;
 }
@@ -215,10 +219,6 @@ td>a{
     display: flex;
 }
 
-.etat1{
-    padding: 20px 20px 20px 0;
-    margin: 15px 0px 5px 0px;
-}
 .etat2{
     margin-top: 15px;
 }
@@ -310,4 +310,59 @@ label{
 .mre{
     width: 100%;
     margin: 10px 20px 15px 30px;
+}
+
+/*  RP  */
+
+.Creer{
+    margin: 25px;
+    display: grid;
+    place-items: center;
+}
+
+/* RP 2eme partie*/
+
+.Libelle, .Filiere, .Niveau{
+    display: flex;
+    padding: 10px 0px;
+}
+
+.valid{
+    display: flex;
+}
+.valid button{
+    margin: 15px 10px 0px 0px;
+}
+
+/* RP 4eme partie*/
+
+/* fieldset div{
+    display: flex;
+    gap: 10px;
+} */
+.Modules, .Classes{
+    display: flex;
+    gap: 10px;
+}
+
+fieldset .professeur, .Grade{
+    width: 60%;
+    height: 30px; 
+    display: flex;
+    justify-content: space-between;
+}
+
+/* RP 5eme partie*/
+
+/* RP 6eme partie*/
+
+/* RP 7eme partie*/
+.ModulesListe{
+    flex-direction: column;
+    /* gap: 10px; */
+}
+.listeModules ul{
+    display: flex;
+    gap: 20px; 
+    list-style: none;
 }
